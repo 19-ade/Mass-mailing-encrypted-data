@@ -7,11 +7,11 @@ import pandas as pd
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
 
-
 def set_credentials(e, p):
     global email, password
     email = e
     password = p
+
 
 def make_pdf(file, password):
     out = PdfFileWriter()
