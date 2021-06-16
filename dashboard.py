@@ -6,7 +6,7 @@ from email_try import set_credentials, mail_sending
 
 def boom():
     mail_sending(str(csv.name), str(file.name))
-    Label(Text = "All mails delivered!", font=("Arial", 12)).grid(row= 10, columns= 1)
+    Label(window, text = "All mails delivered!", font=("Arial", 12)).grid(row= 10, columns= 1)
     return ()
 
 
@@ -20,28 +20,28 @@ def send_stuff():
 def file_opener():
     global file
     file = filedialog.askopenfile(initialdir="/home/anwesan", mode='r', title="Select a File",
-                                  filetypes=(("Text files",
+                                  filetypes=(("pdf",
+                                              "*.pdf"),
+                                             ("Text files",
                                               "*.txt*"),
                                              ("all files",
                                               "*.*"),
-                                             ("pdf",
-                                              "*.pdf"),
                                              ("csv",
                                               "*.csv*")))
-
+    Label(window, text=file.name.split('/')[-1], fg = 'green', bg = 'white' ).grid(row=6, column=1, padx =10 , pady = 10)
 
 def csv_opener():
     global csv
     csv = filedialog.askopenfile(initialdir="/home/anwesan", mode='r', title="Select a File",
-                                 filetypes=(("Text files",
+                                 filetypes=( ("csv",
+                                             "*.csv*"),
+                                             ("Text files",
                                              "*.txt*"),
                                             ("all files",
                                              "*.*"),
                                             ("pdf",
-                                             "*.pdf"),
-                                            ("csv",
-                                             "*.csv*")))
-
+                                             "*.pdf")))
+    Label(window, text = csv.name.split('/')[-1], fg = 'green', bg = 'white').grid(row = 8, column = 1, padx = 10, pady = 10)
 
 window = Tk()
 name_var = StringVar()
