@@ -6,9 +6,12 @@ from email import encoders
 import pandas as pd
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
-file = PdfFileReader("<enter file name>")
-df = pd.read_csv("<Enter CSV")
 
+
+def set_credentials(e, p):
+    global email, password
+    email = e
+    password = p
 
 def make_pdf(file, password):
     out = PdfFileWriter()
@@ -18,14 +21,14 @@ def make_pdf(file, password):
         out.addPage(page)
     passw = password
     out.encrypt(passw)
-    with open("<saved_address>", "wb") as f:
+    with open("Encrypted_pdf.pdf", "wb") as f:
         out.write(f)
 
 
-def send_mail(name):
-    mail_content = "Hello, " + name + "\n The password is your name DOB"
-    sender_address = '<enter sender_mail'
-    sender_pass = '<enter password>'
+def send_mail(df, i):
+    mail_content = "Hello, " + df['Name'][i] + "\n The password is your name DOB"
+    sender_address = email
+    sender_pass = password
     receiver_address = df['Email'][i]
     message = MIMEMultipart()
     message['From'] = sender_address
@@ -33,7 +36,7 @@ def send_mail(name):
     message['Subject'] = 'Open me pls'
 
     message.attach(MIMEText(mail_content, 'plain'))
-    attach_file_name = '<enter saved address>'
+    attach_file_name = 'Encrypted_pdf.pdf'
     attach_file = open(attach_file_name, 'rb')  # Open the file as binary mode
     payload = MIMEBase('application', 'octate-stream')
     payload.set_payload((attach_file).read())
@@ -51,7 +54,10 @@ def send_mail(name):
     print('Mail Sent to ' + df['Name'][i])
 
 
-for i in range(len(df)):
+def mail_sending(csv_path, file_path):
+    file = PdfFileReader(file_path)
+    df = pd.read_csv(csv_path)
+    for i in range(len(df)):
     
-    make_pdf(file, str(df['DOB'][i]))
-    send_mail(df['Name'][i])
+        make_pdf(file, str(df['DOB'][i]))
+        send_mail(df, i)
