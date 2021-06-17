@@ -32,13 +32,26 @@ def send_stuff():
 # ---------------------------- ADD RECIPIENT ------------------------------- #
 
 def add_recipient():
-    input_(mail_entry.get(), passw_entry.get(), dob_entry.get())
+    if len(mail_entry.get()) == 0 or len(passw_entry.get()) == 0 or len(dob_entry.get()) == 0:
+        messagebox.showinfo(title="Oops", message="Please don't leave any field empty!")
 
+    else:
+        is_ok = messagebox.askokcancel(title="Confirmation",
+                                       message=f"These are the details entered: \nName: {mail_entry.get()}\n Email: {passw_entry.get()}\n DOB: {dob_entry.get()} \n Is it okay to ADD?   ")
+        if is_ok:
+            input_(mail_entry.get(), passw_entry.get(), dob_entry.get())
+            x = passw_entry.get()
+            passw_entry.delete(0, END)
+            mail_entry.delete(0, END)
+            dob_entry.delete(0, END)
+            messagebox.showinfo(title="Added", message=f"The recipient with Email: {x} was Added.")
 
 # ---------------------------- DELETE RECIPIENT ------------------------------- #
 
 def delete_recipient():
     delete_(pass_entry.get(), "Email")
+    messagebox.showinfo(title="Deleted", message=f"The recipient with Email: {pass_entry.get()} was deleted.")
+    pass_entry.delete(0,END)
 
 
 # ---------------------------- SELECTS PDF ------------------------------- #
@@ -101,7 +114,7 @@ canvas.create_image(152, 100, image=logo_img)
 canvas.grid(row=0, column=2)
 
 # LABELS
-website_label = Label(text="Enter SENDER'S CRED", bg="white", font=("Arial", 12))
+website_label = Label(text="Enter Sender's Credentials:", bg="white", font=("Arial", 12))
 website_label.grid(row=1, column=2)
 username_label = Label(text="Email:", bg="white", font=("Arial", 12))
 username_label.grid(row=2, column=1)
@@ -150,7 +163,7 @@ dob_entry.grid(row=14, column=1)
 
 # BUTTON
 
-add_button = Button(text='ADD', width=15, font=("Arial", 10), bg="white", command = add_recipient)
+add_button = Button(text='Add', width=15, font=("Arial", 10), bg="white", command = add_recipient)
 add_button.grid(row=15, column=1)
 
 # ---------------------------- DELETE RECIPIENT UI SETUP------------------------------- #
@@ -158,7 +171,7 @@ add_button.grid(row=15, column=1)
 
 # LABELS
 Label(window, bg='white').grid(row=10, column=1)
-del_details_label = Label(text="Delete Recipient:", bg="white", font=("Arial", 12))
+del_details_label = Label(text="Remove Recipient:", bg="white", font=("Arial", 12))
 del_details_label.grid(row=11, column=3, padx=10, pady=10)
 n_label = Label(text="Name:", bg="white", font=("Arial", 12))
 n_label.grid(row=12, column=2)
@@ -178,7 +191,7 @@ DOB_entry.grid(row=14, column=3)
 
 # BUTTON
 
-DEL_button = Button(text='DELETE', width=15, font=("Arial", 10), bg="white", command = delete_recipient)
+DEL_button = Button(text='Remove', width=15, font=("Arial", 10), bg="white", command = delete_recipient)
 DEL_button.grid(row=15, column=3)
 
 window.mainloop()
