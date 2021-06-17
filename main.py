@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import filedialog
-from emailing import set_credentials, mail_sending
+from email_try import set_credentials, mail_sending
 from tkinter import messagebox
 
 FILE_PATH = "C:/Users/adity/Desktop/New folder/PYTHON PROJECTS/Mass Mailing/"
