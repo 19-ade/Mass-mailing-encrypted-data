@@ -1,2 +1,2 @@
 # Mass-mailing-encrypted-data
-Mass Mailing encrypted files
+Mass Mailing personalised encrypted files(pdfs) with personalised mail using SQLlite database.
