@@ -10,8 +10,6 @@ FILE_PATH = "C:/Users/adity/Desktop/New folder/PYTHON PROJECTS/Mass Mailing/"
 
 def boom():
     mail_sending(str(csv.name), str(file.name))
-    # l = Label(text="All Mails Sent !!", fg="green", bg="white", font=("Arial", 20))
-    # l.grid(row=10, column=1, padx=10, pady=10)
     messagebox.showinfo(title="Completed", message="All Mails are sent!!")
     return
 
@@ -66,7 +64,10 @@ def csv_opener():
         Label(window, text=csv.name.split('/')[-1], fg='green', bg='white').grid(row=8, column=1, padx=10, pady=10)
     else:
         csv_opener()
+        
+        
 # ---------------------------- UI SETUP------------------------------- #
+
 window = Tk()
 name_var = StringVar()
 passw_var = StringVar()
