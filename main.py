@@ -3,7 +3,7 @@ from tkinter import filedialog
 from email_try import set_credentials, mail_sending
 from tkinter import messagebox
 
-FILE_PATH = "C:/Users/adity/Desktop/New folder/PYTHON PROJECTS/Mass Mailing/"
+#FILE_PATH = "C:/Users/adity/Desktop/New folder/PYTHON PROJECTS/Mass Mailing/"
 
 
 # ---------------------------- INITIATING MAIL SENDING ------------------------------- #
@@ -28,7 +28,7 @@ def send_stuff():
 def file_opener():
 
     global file
-    file = filedialog.askopenfile(initialdir=FILE_PATH, mode='r',
+    file = filedialog.askopenfile(initialdir="/", mode='r',
                                   title="Select a File",
                                   filetypes=(("pdf",
                                               "*.pdf"),
@@ -48,7 +48,7 @@ def file_opener():
 
 def csv_opener():
     global csv
-    csv = filedialog.askopenfile(initialdir=FILE_PATH, mode='r', title="Select a File",
+    csv = filedialog.askopenfile(initialdir="/", mode='r', title="Select a File",
                                  filetypes=(("csv",
                                              "*.csv*"),
                                             ("pdf",
