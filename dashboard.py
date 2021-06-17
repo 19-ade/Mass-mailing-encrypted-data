@@ -46,12 +46,12 @@ def csv_opener():
 window = Tk()
 name_var = StringVar()
 passw_var = StringVar()
-window.title("MASS MAILING")
+window.title("MMEF - Mass Mail Encrypted Files")
 window.config(padx=50, pady=50, bg="white")
 
 canvas = Canvas(width=200, height=200, bg="white", highlightthickness=0)
 logo_img = PhotoImage(file="logo.png")
-canvas.create_image(152, 85, image=logo_img)
+canvas.create_image(150, 85, image=logo_img)
 canvas.grid(row=0, column=1)
 
 # LABELS
