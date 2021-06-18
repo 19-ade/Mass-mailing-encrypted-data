@@ -44,6 +44,17 @@ def get_query():  # function returns the contents of the table
 
     return l
 
+def view_specific(query, column):
+    if column == 'DOB':
+
+        cursor.execute("SELECT rowid, * FROM mail_list WHERE DOB = ? ", (query,))
+    elif column == 'Email':
+        cursor.execute("SELECT rowid, * FROM mail_list WHERE Email = ? ", (query,))
+    elif column == 'Name':
+        cursor.execute("SELECT rowid, * FROM mail_list WHERE Name = ? ", (query,))
+    l = cursor.fetchall()
+    return l
+
 
 def view_specific(query, column):
     if column == 'DOB':

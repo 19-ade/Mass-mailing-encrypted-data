@@ -79,7 +79,6 @@ def delete_recipient():
     pass_entry.delete(0, END)
     username_entry.delete(0, END)
 
-
 # ---------------------------- SELECTS PDF ------------------------------- #
 
 def file_opener():
@@ -122,7 +121,6 @@ def csv_opener():
         Label(window, text=csv.name.split('/')[-1], fg='green', bg='white').grid(row=8, column=2, padx=10, pady=10)
     else:
         csv_opener()
-
 
 
 # ---------------------------- Senders UI SETUP------------------------------- #
