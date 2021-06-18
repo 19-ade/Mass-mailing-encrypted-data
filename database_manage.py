@@ -33,6 +33,8 @@ def delete_(query, column):  # function to delete data based on column
         cursor.execute("DELETE FROM mail_list WHERE DOB = ? ", (query,))
     elif column == 'Email':
         cursor.execute("DELETE FROM mail_list WHERE Email = ? ", (query,))
+    elif column == 'Name':
+        cursor.execute("DELETE FROM mail_list WHERE Name = ? ", (query,))
     conn.commit()
 
 
@@ -40,6 +42,18 @@ def get_query():  # function returns the contents of the table
     cursor.execute("SELECT * FROM mail_list")
     l = cursor.fetchall()
 
+    return l
+
+
+def view_specific(query, column):
+    if column == 'DOB':
+
+        cursor.execute("SELECT rowid, * FROM mail_list WHERE DOB = ? ", (query,))
+    elif column == 'Email':
+        cursor.execute("SELECT rowid, * FROM mail_list WHERE Email = ? ", (query,))
+    elif column == 'Name':
+        cursor.execute("SELECT rowid, * FROM mail_list WHERE Name = ? ", (query,))
+    l = cursor.fetchall()
     return l
 
 
@@ -59,7 +73,9 @@ def initialize():  # initializes data with default dataset.
     cursor.executemany("INSERT INTO mail_list VALUES (?, ?, ?)", array)
     conn.commit()
 
+
 # reset()
 # creation()
-# initialize()
-# print(get_query())
+#initialize()
+#print(get_query())
+#print(view_specific(16012000, 'DOB'))
