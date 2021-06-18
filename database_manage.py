@@ -22,12 +22,12 @@ def creation():
 # cursor.fetchall() to return all the queries in a list
 
 
-def input_(name, email, dob):
+def input_(name, email, dob):  # function to append new data into table
     cursor.execute("INSERT INTO mail_list VALUES (?, ?, ?)", [name, email, dob])
     conn.commit()
 
 
-def delete_(query, column):
+def delete_(query, column):  # function to delete data based on column
     if column == 'DOB':
 
         cursor.execute("DELETE FROM mail_list WHERE DOB = ? ", (query,))
@@ -36,19 +36,21 @@ def delete_(query, column):
     conn.commit()
 
 
-def get_query():
+def get_query():  # function returns the contents of the table
     cursor.execute("SELECT * FROM mail_list")
     l = cursor.fetchall()
 
     return l
 
-def reset():
+
+def reset():  # Deletes all data in the table
     cursor.execute("DELETE FROM mail_list")
     conn.commit()
 
-def initialize():
+
+def initialize():  # initializes data with default dataset.
     array = [
-        ("Anwesan de",'f20190518@hyderabad.bits-pilani.ac.in', 19092000),
+        ("Anwesan de", 'f20190518@hyderabad.bits-pilani.ac.in', 19092000),
         ("Aditya Goyal", 'wdenny@gmail.com', 12042001),
         ("Abhinav gupta", 'f20190380@hyderabad.bits-pilani.ac.in', 16012000),
         ('Nirav jayesh parmar', 'f20190540@hyderabad.bits-pilani.ac.in', 7022002)
@@ -57,8 +59,7 @@ def initialize():
     cursor.executemany("INSERT INTO mail_list VALUES (?, ?, ?)", array)
     conn.commit()
 
-#reset()
-#creation()
-#initialize()
-#print(get_query())
-
+# reset()
+# creation()
+# initialize()
+# print(get_query())
