@@ -48,18 +48,36 @@ def add_recipient():
 # ---------------------------- DELETE RECIPIENT ------------------------------- #
 
 def delete_recipient():
-    if len(username_entry.get()):
-        delete_(username_entry.get(), "Name")
-        messagebox.showinfo(title="Deleted", message=f"The recipient with Name : {username_entry.get()} was deleted.")
-        username_entry.delete(0, END)
-    elif len(pass_entry.get()):
-        delete_(pass_entry.get(), 'Email')
-        messagebox.showinfo(title="Deleted", message=f"The recipient with Email : {pass_entry.get()} was deleted.")
-        pass_entry.delete(0, END)
-    elif len(DOB_entry.get()):
-        delete_(DOB_entry.get(), 'DOB')
-        messagebox.showinfo(title="Deleted", message=f"The recipient with Date of Birth : {DOB_entry.get()} was deleted.")
-        DOB_entry.delete(0, END)
+    if len(username_entry.get()) == 0 and len(pass_entry.get()) == 0 and len(DOB_entry.get()) == 0:
+        messagebox.showinfo(title="ERROR", message="All fields empty")
+    else:
+        if len(username_entry.get()):
+            d = view_specific(username_entry.get(), "Name")
+            if len(d):
+                delete_(username_entry.get(), "Name")
+                messagebox.showinfo(title="Deleted", message=f"The recipient with Name : {username_entry.get()} was deleted.")
+            else:
+                messagebox.showinfo(title="ERROR", message="This Record doesn't exist")
+
+        elif len(pass_entry.get()):
+            d = view_specific(pass_entry.get(), "Email")
+            if len(d):
+                delete_(pass_entry.get(), 'Email')
+                messagebox.showinfo(title="Deleted", message=f"The recipient with Email : {pass_entry.get()} was deleted.")
+            else:
+                messagebox.showinfo(title="ERROR", message="This Record doesn't exist")
+
+        elif len(DOB_entry.get()):
+            d = view_specific(DOB_entry.get(), "DOB")
+            print(d)
+            if len(d):
+                delete_(DOB_entry.get(), 'DOB')
+                messagebox.showinfo(title="Deleted",message=f"The recipient with Date of Birth : {DOB_entry.get()} was deleted.")
+            else:
+                messagebox.showinfo(title="ERROR", message="This Record doesn't exist")
+    DOB_entry.delete(0, END)
+    pass_entry.delete(0, END)
+    username_entry.delete(0, END)
 
 # ---------------------------- SELECTS PDF ------------------------------- #
 
