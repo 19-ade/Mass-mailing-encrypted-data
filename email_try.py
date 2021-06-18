@@ -3,7 +3,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import pandas as pd
+
 from PyPDF2 import PdfFileWriter, PdfFileReader
 
 
@@ -25,11 +25,11 @@ def make_pdf(file, password):
         out.write(f)
 
 
-def send_mail(df, i):
-    mail_content = "Hello, " + df['Name'][i] + "\n The password is your name DOB"
+def send_mail(i):
+    mail_content = "Hello, " + i[0] + "\n The password is your name DOB"
     sender_address = email
     sender_pass = password
-    receiver_address = df['Email'][i]
+    receiver_address = i[1]
     message = MIMEMultipart()
     message['From'] = sender_address
     message['To'] = receiver_address
@@ -51,13 +51,12 @@ def send_mail(df, i):
     text = message.as_string()
     session.sendmail(sender_address, receiver_address, text)
     session.quit()
-    print('Mail Sent to ' + df['Name'][i])
+    print('Mail Sent to ' + i[0])
 
 
-def mail_sending(csv_path, file_path):
+def mail_sending(datab, file_path):
     file = PdfFileReader(file_path)
-    df = pd.read_csv(csv_path)
-    for i in range(len(df)):
-    
-        make_pdf(file, str(df['DOB'][i]))
-        send_mail(df, i)
+    df = datab
+    for i in df:
+        make_pdf(file, str(i[2]))
+        send_mail(i)

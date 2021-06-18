@@ -1,19 +1,16 @@
 from tkinter import *
 from tkinter import filedialog
-from emailing import set_credentials, mail_sending
+from email_try import set_credentials, mail_sending
 from tkinter import messagebox
-from database import *
-
-
+from database_manage import *
 
 FILE_PATH = "/"
-
 
 
 # ---------------------------- INITIATING MAIL SENDING ------------------------------- #
 
 def boom():
-    mail_sending(str(csv.name), str(file.name))
+    mail_sending(get_query(), str(file.name))
     messagebox.showinfo(title="Completed", message="All Mails are sent!!")
     a = get_query()
     for i in a:
@@ -28,6 +25,7 @@ def send_stuff():
     boom()
     name_var.set("")
     passw_var.set("")
+
 
 # ---------------------------- ADD RECIPIENT ------------------------------- #
 
@@ -46,12 +44,13 @@ def add_recipient():
             dob_entry.delete(0, END)
             messagebox.showinfo(title="Added", message=f"The recipient with Email: {x} was Added.")
 
+
 # ---------------------------- DELETE RECIPIENT ------------------------------- #
 
 def delete_recipient():
     delete_(pass_entry.get(), "Email")
     messagebox.showinfo(title="Deleted", message=f"The recipient with Email: {pass_entry.get()} was deleted.")
-    pass_entry.delete(0,END)
+    pass_entry.delete(0, END)
 
 
 # ---------------------------- SELECTS PDF ------------------------------- #
@@ -109,7 +108,7 @@ window.config(padx=75, pady=50, bg="white")
 
 # CANVAS (IMAGE)
 canvas = Canvas(width=200, height=200, bg="white", highlightthickness=0)
-logo_img = PhotoImage(file="images/logo.png")
+logo_img = PhotoImage(file="logo.png")
 canvas.create_image(152, 100, image=logo_img)
 canvas.grid(row=0, column=2)
 
@@ -163,7 +162,7 @@ dob_entry.grid(row=14, column=1)
 
 # BUTTON
 
-add_button = Button(text='Add', width=15, font=("Arial", 10), bg="white", command = add_recipient)
+add_button = Button(text='Add', width=15, font=("Arial", 10), bg="white", command=add_recipient)
 add_button.grid(row=15, column=1)
 
 # ---------------------------- DELETE RECIPIENT UI SETUP------------------------------- #
@@ -191,7 +190,7 @@ DOB_entry.grid(row=14, column=3)
 
 # BUTTON
 
-DEL_button = Button(text='Remove', width=15, font=("Arial", 10), bg="white", command = delete_recipient)
+DEL_button = Button(text='Remove', width=15, font=("Arial", 10), bg="white", command=delete_recipient)
 DEL_button.grid(row=15, column=3)
 
 window.mainloop()
