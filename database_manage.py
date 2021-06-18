@@ -50,7 +50,7 @@ def initialize():
     array = [
         ("Anwesan de",'f20190518@hyderabad.bits-pilani.ac.in', 19092000),
         ("Aditya Goyal", 'wdenny@gmail.com', 12042001),
-        ("Abhinav gupta", 'f20190478@hyderabad.bits-pilani.ac.in', 16012000),
+        ("Abhinav gupta", 'f20190380@hyderabad.bits-pilani.ac.in', 16012000),
         ('Nirav jayesh parmar', 'f20190540@hyderabad.bits-pilani.ac.in', 7022002)
 
     ]
