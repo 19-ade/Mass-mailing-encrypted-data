@@ -61,28 +61,4 @@ def initialize():
 #creation()
 #initialize()
 #print(get_query())
-'''
-while 1:
-    a, b, d = input().split()
-    input_(a, b, d)
 
-    e = int(input("Wnat to add more 1 0r 0"))
-    if e:
-        continue
-    else:
-        print("delete shit?")
-        a = int(input())
-        if a:
-            while 1:
-                q, c = input().split()
-                print(q, c)
-                delete_(q, c)
-                d = int(input("still wanna?"))
-                if d:
-                    continue
-                else:
-                    break
-
-        get_query()
-        break
-'''
