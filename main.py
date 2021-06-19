@@ -5,6 +5,14 @@ from tkinter import messagebox
 from database_manage import *
 
 FILE_PATH = "/"
+# ---------------------------- PRINTING AND DOWNLOAD FILE ------------------------------- #
+def print_():
+    print_csv(get_query(), 'CSV')
+    messagebox.showinfo(title="Completed", message="CSV File obtained")
+
+def print_ex():
+    print_csv(get_query(), 'Excel')
+    messagebox.showinfo(title="Completed", message="Excel(.xlsx) File obtained")
 
 
 # ---------------------------- INITIATING MAIL SENDING ------------------------------- #
@@ -186,6 +194,7 @@ passw_entry.grid(row=13, column=1)
 dob_entry = Entry(width=35)
 dob_entry.grid(row=14, column=1)
 
+
 # BUTTON
 
 add_button = Button(text='Add', width=15, font=("Arial", 10), bg="white", command=add_recipient)
@@ -219,4 +228,9 @@ DOB_entry.grid(row=14, column=3)
 DEL_button = Button(text='Remove', width=15, font=("Arial", 10), bg="white", command=delete_recipient)
 DEL_button.grid(row=15, column=3)
 
+# ---------------------------- RETURN CSV FILE UI SETUP------------------------------- #
+PRINT_button = Button(text='Obtain CSV', width=15, font=("Arial", 10), bg="white", command=print_)
+PRINT_button.grid(row=0, column=0)
+Print_xl_button = Button(text = 'Obtain .xlsx', width=15, font=("Arial", 10), bg="white", command=print_ex)
+Print_xl_button.grid(row=1, column=0)
 window.mainloop()

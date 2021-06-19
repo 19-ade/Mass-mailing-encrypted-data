@@ -1,5 +1,7 @@
 import sqlite3
-
+import csv
+import pandas as pd
+import openpyxl
 # creating the database
 conn = sqlite3.connect('mass_mailing.db')
 
@@ -55,22 +57,21 @@ def view_specific(query, column):
     l = cursor.fetchall()
     return l
 
-
-def view_specific(query, column):
-    if column == 'DOB':
-
-        cursor.execute("SELECT rowid, * FROM mail_list WHERE DOB = ? ", (query,))
-    elif column == 'Email':
-        cursor.execute("SELECT rowid, * FROM mail_list WHERE Email = ? ", (query,))
-    elif column == 'Name':
-        cursor.execute("SELECT rowid, * FROM mail_list WHERE Name = ? ", (query,))
-    l = cursor.fetchall()
-    return l
-
-
 def reset():  # Deletes all data in the table
     cursor.execute("DELETE FROM mail_list")
     conn.commit()
+
+def print_csv(l, t):
+    l = [list(i) for i in l]
+    if t == 'CSV':
+        with open('file_database.csv', 'w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerows(l)
+    elif t == 'Excel':
+        df = pd.DataFrame(l,
+                          columns=['Name', 'Email', 'DOB'])
+        df.to_excel('database_file.xlsx', index=False)
+
 
 
 def initialize():  # initializes data with default dataset.
@@ -90,3 +91,4 @@ def initialize():  # initializes data with default dataset.
 #initialize()
 #print(get_query())
 #print(view_specific(16012000, 'DOB'))
+#print_csv(get_query())
