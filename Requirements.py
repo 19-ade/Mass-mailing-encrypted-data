@@ -13,3 +13,4 @@ def install(package):
 
 install("secure-smtplib")
 install("PyPDF2")
+install("openpyxl")
