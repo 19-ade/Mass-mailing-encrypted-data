@@ -230,7 +230,7 @@ DEL_button.grid(row=15, column=3)
 
 # ---------------------------- RETURN CSV FILE UI SETUP------------------------------- #
 PRINT_button = Button(text='Obtain CSV', width=15, font=("Arial", 10), bg="white", command=print_)
-PRINT_button.grid(row=0, column=0)
+PRINT_button.grid(row=9, column=1)
 Print_xl_button = Button(text = 'Obtain .xlsx', width=15, font=("Arial", 10), bg="white", command=print_ex)
-Print_xl_button.grid(row=1, column=0)
+Print_xl_button.grid(row=9, column=3)
 window.mainloop()
