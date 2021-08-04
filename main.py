@@ -3,23 +3,40 @@ from tkinter import filedialog
 from email_try import set_credentials, mail_sending
 from tkinter import messagebox
 from database_manage import *
+from gtts import gTTS
+import os
+import playsound
+# _____________________________PLAYING THE SOUND FUNCTION_________________________________ #
+def play_sound(st):
+    language = 'en'
+    myobj = gTTS(text=st, lang=language, slow=False)
+    myobj.save("welcome.mp3")
+    playsound.playsound("welcome.mp3")
+    os.remove("welcome.mp3")
+
 
 FILE_PATH = "/"
 # ---------------------------- PRINTING AND DOWNLOAD FILE ------------------------------- #
 def print_():
     print_csv(get_query(), 'CSV')
+    play_sound("CSV File obtained")
     messagebox.showinfo(title="Completed", message="CSV File obtained")
+
 
 def print_ex():
     print_csv(get_query(), 'Excel')
+    play_sound('Excel File obtained')
     messagebox.showinfo(title="Completed", message="Excel(.xlsx) File obtained")
+
 
 
 # ---------------------------- INITIATING MAIL SENDING ------------------------------- #
 
 def boom():
     mail_sending(get_query(), str(file.name))
+    play_sound("Congratulations!  All Mails sent")
     messagebox.showinfo(title="Completed", message="All Mails are sent!!")
+
     a = get_query()
     for i in a:
         print(list(i))
@@ -39,7 +56,9 @@ def send_stuff():
 
 def add_recipient():
     if len(mail_entry.get()) == 0 or len(passw_entry.get()) == 0 or len(dob_entry.get()) == 0:
+        play_sound("Please don't leave any field empty!")
         messagebox.showinfo(title="Oops", message="Please don't leave any field empty!")
+
 
     else:
         is_ok = messagebox.askokcancel(title="Confirmation",
@@ -50,39 +69,53 @@ def add_recipient():
             passw_entry.delete(0, END)
             mail_entry.delete(0, END)
             dob_entry.delete(0, END)
+            play_sound("Success!")
             messagebox.showinfo(title="Added", message=f"The recipient with Email: {x} was Added.")
+
 
 
 # ---------------------------- DELETE RECIPIENT ------------------------------- #
 
 def delete_recipient():
     if len(username_entry.get()) == 0 and len(pass_entry.get()) == 0 and len(DOB_entry.get()) == 0:
+        play_sound("Error")
         messagebox.showinfo(title="ERROR", message="All fields empty")
     else:
         if len(username_entry.get()):
             d = view_specific(username_entry.get(), "Name")
             if len(d):
                 delete_(username_entry.get(), "Name")
+                play_sound("Success!")
                 messagebox.showinfo(title="Deleted", message=f"The recipient with Name : {username_entry.get()} was deleted.")
+
             else:
+                play_sound("Error")
                 messagebox.showinfo(title="ERROR", message="This Record doesn't exist")
+
 
         elif len(pass_entry.get()):
             d = view_specific(pass_entry.get(), "Email")
             if len(d):
                 delete_(pass_entry.get(), 'Email')
+                play_sound("Success!")
                 messagebox.showinfo(title="Deleted", message=f"The recipient with Email : {pass_entry.get()} was deleted.")
             else:
+                play_sound("Error")
                 messagebox.showinfo(title="ERROR", message="This Record doesn't exist")
+
 
         elif len(DOB_entry.get()):
             d = view_specific(DOB_entry.get(), "DOB")
             print(d)
             if len(d):
                 delete_(DOB_entry.get(), 'DOB')
+                play_sound("Success!")
                 messagebox.showinfo(title="Deleted",message=f"The recipient with Date of Birth : {DOB_entry.get()} was deleted.")
+
             else:
+                play_sound("Error!")
                 messagebox.showinfo(title="ERROR", message="This Record doesn't exist")
+
     DOB_entry.delete(0, END)
     pass_entry.delete(0, END)
     username_entry.delete(0, END)
