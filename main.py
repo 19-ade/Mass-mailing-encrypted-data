@@ -6,6 +6,7 @@ from database_manage import *
 from gtts import gTTS
 import os
 import playsound
+
 # _____________________________PLAYING THE SOUND FUNCTION_________________________________ #
 def play_sound(st):
     language = 'en'
