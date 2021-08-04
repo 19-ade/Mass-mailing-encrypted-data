@@ -69,6 +69,7 @@ python main.py
 - error message functionality for wrong entries while deleting and pressing delete without any inputs added
 - Deleting a record can now be achieved with entering any one of the values (Email, dob, name) or all of them 
 - New button features added which allows users to directly download the database contents in either excel or csv file .
+- A text_to_speech feature added which notifies a person everytime an action taks place(errors, mails sent, success etc.)
 
 
 
